@@ -4,25 +4,22 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="translator.higgi.css">
 	</HEAD>
-	<BODY>
-	<h1>Deutsch - Etharisch, Etharisch - Deutsch!</h1><h4>Der Rahasiatranslator</h4>
+	<BODY><div class="head">
+	<h1>Deutsch - Etharisch, Etharisch - Deutsch!</h1><h4>Der Rahanslator</h4></div>
 	<form method="POST">
 		<TABLE>
 		<tr>
 			<TH>Original Text</TH>
 			<TH>Übersetzung <select id="type" name="type"><option value="DeEt">Deutsch zu Etharisch</option><option value="EtDe">Etharisch zu Deutsch</option></select></TH>
 		</tr>
-		<?php
-
-		?>
+		
 		<tr>
 			<td>
-				<textarea id="original" name="o"><?php
+				<textarea id="original" name="o" placeholder="Translate..."><?php
 				if (isset($_REQUEST['o'])) {
 					echo htmlspecialchars($_REQUEST['o']);
 				}
-				?>
-				</textarea>
+				?></textarea>
 			</td>
 			
 			<td>
@@ -34,11 +31,15 @@
 					}
 					if ($_POST['type'] == 'DeEt'){
 						foreach($words as $word) {
-							echo DeEt(htmlspecialchars($word.' '));
+							//if (DeEt(htmlspecialchars($word.' ')) != ' ') {
+								echo str_replace('  ','',DeEt(htmlspecialchars($word.' ')));
+							//}
 						}
 					} else {
 						foreach($words as $word) {
-							echo EtDe(htmlspecialchars($word.' '));
+							//if (EtDe(htmlspecialchars($word.' ')) != ' ') {
+								echo str_replace('  ','',EtDe(htmlspecialchars($word.' ')));
+							//}
 						}
 
 					}
@@ -49,7 +50,7 @@
 			
 		</tr>		
 		</TABLE>
-		<input type="submit" value="übersetzen"/>
+		<center><input type="submit" value="Übersetzen"/></center>
 		</form>
 	</BODY>
 	
@@ -62,6 +63,7 @@
 
 
 	function DeEt($string) {
+		$string = strtolower($string);
 		$string = str_replace("ab ","kad ",$string);
 		$string = str_replace("abend ","namar ",$string);
 		$string = str_replace("aber ","ka ",$string);
@@ -92,9 +94,6 @@
 		$string = str_replace("berg ","bonoka'am ",$string);
 		$string = str_replace("bild ","tag ",$string);
 		$string = str_replace("bin ","at ",$string);
-		$string = str_replace("ist ","at ",$string);
-		$string = str_replace("beim ","at ",$string);
-		$string = str_replace("bei ","at ",$string);
 		$string = str_replace("bis ","at ",$string);
 		$string = str_replace("böse ","da'e ",$string);
 		$string = str_replace("brauchen ","wyr ",$string);
@@ -130,16 +129,16 @@
 		$string = str_replace("gesicht ","wyr'wyr'ke ",$string);
 		$string = str_replace("gesund ","nay'i ",$string);
 		$string = str_replace("gewinnen ","da'da'eh ",$string);
-		$string = str_replace("glck ","da'eh'ru ",$string);
+		$string = str_replace("glück ","da'eh'ru ",$string);
 		$string = str_replace("gott ","etharem ",$string);
 		$string = str_replace("groß ","raha'ru'ru ",$string);
-		$string = str_replace("gruá ","ha'ru ",$string);
+		$string = str_replace("gruß ","ha'ru ",$string);
 		$string = str_replace("gut ","ta'ta'a ",$string);
 		$string = str_replace("haben ","hat'ru ",$string);
 		$string = str_replace("halten ","ke'ru'wyr ",$string);
 		$string = str_replace("hat ","dov'a ",$string);
 		$string = str_replace("haus ","kot ",$string);
-		$string = str_replace("heiá ","ha'jie ",$string);
+		$string = str_replace("heiß ","ha'jie ",$string);
 		$string = str_replace("helfen ","ver'ki'in ",$string);
 		$string = str_replace("herz ","damdam ",$string);
 		$string = str_replace("heute ","sh'e ",$string);
@@ -149,7 +148,8 @@
 		$string = str_replace("kein ","an'ay'ru ",$string);
 		$string = str_replace("klein ","smo'ol ",$string);
 		$string = str_replace("kopf ","do'ke ",$string);
-		$string = str_replace("krank/kaputt ","do'ma'ke ",$string);
+		$string = str_replace("krank","do'ma'ke ",$string);
+		$string = str_replace("kaputt","do'ma'ke ",$string);
 		$string = str_replace("land ","so'me ",$string);
 		$string = str_replace("laufen ","da'dal ",$string);
 		$string = str_replace("leben ","ru'wyr'ki'in ",$string);
@@ -159,7 +159,7 @@
 		$string = str_replace("liebe ","ru'na'me ",$string);
 		$string = str_replace("loch ","wu ",$string);
 		$string = str_replace("luft ","de'ene'ene ",$string);
-		$string = str_replace("m„dchen ","kiki ",$string);
+		$string = str_replace("mädchen ","kiki ",$string);
 		$string = str_replace("mann ","da'am'ru ",$string);
 		$string = str_replace("maus ","na'na'ki'in ",$string);
 		$string = str_replace("meer ","ma'ru ",$string);
@@ -197,8 +197,8 @@
 		$string = str_replace("tag ","da'nery ",$string);
 		$string = str_replace("tier ","unum ",$string);
 		$string = str_replace("tot ","akta ",$string);
-		$string = str_replace("ber ","a'ye ",$string);
-		$string = str_replace("berall ","a'ye'ney ",$string);
+		$string = str_replace("über ","a'ye ",$string);
+		$string = str_replace("überall ","a'ye'ney ",$string);
 		$string = str_replace("und ","a ",$string);
 		$string = str_replace("vater ","fa'wre ",$string);
 		$string = str_replace("vergessen ","no'am'ru'ki'in ",$string);
@@ -223,7 +223,7 @@
 		$string = str_replace("wirklich ","da'ki'in ",$string);
 		$string = str_replace("zahl ","man ",$string);
 		$string = str_replace("zeit ","taru'ki'in ",$string);
-		$string = str_replace("zurck ","nayum ",$string);
+		$string = str_replace("zurück ","nayum ",$string);
 		$string = str_replace("zusammen ","ura'ki'in ",$string);
 		$string = str_replace("zwischen ","darudame ",$string);
 		$string = str_replace("ich ","ye ",$string);
@@ -240,18 +240,24 @@
 	}
 	
 	function EtDe($string) {
-		$string = str_replace("kad ","ab ",$string);
-		$string = str_replace("namar ","abend ",$string);
+		$string = strtolower($string);
+		$string = str_replace("Kad ","Ab ",$string);
+		$string = str_replace("Namar ","Abend ",$string);
 		$string = str_replace("ka ","aber ",$string);
 		$string = str_replace("dailima ","acht ",$string);
 		$string = str_replace("nah ","allein ",$string);
 		$string = str_replace("ai ","als ",$string);
 		$string = str_replace("ai'je ","also ",$string);
 		$string = str_replace("frey ","alt ",$string);
-		$string = str_replace("la ","am/an/um/aus ",$string);
-		$string = str_replace("adnan ","andere/anders ",$string);
-		$string = str_replace("yewra ","anfang/anfangen ",$string);
-		$string = str_replace("bah ","angst ",$string);
+		$string = str_replace("la ","am ",$string);
+		$string = str_replace("la ","an ",$string);
+		$string = str_replace("la ","um ",$string);
+		$string = str_replace("la ","aus ",$string);
+		$string = str_replace("adnan ","andere ",$string);
+		$string = str_replace("adnan ","anders ",$string);
+		$string = str_replace("yewra ","anfang ",$string);
+		$string = str_replace("yewra ","anfangen ",$string);
+		$string = str_replace("bah ","Angst ",$string);
 		$string = str_replace("tul ","antwort ",$string);
 		$string = str_replace("ij ","arbeit ",$string);
 		$string = str_replace("ta'am ","auch ",$string);
@@ -259,28 +265,38 @@
 		$string = str_replace("ru'gh ","bald ",$string);
 		$string = str_replace("da'me ","bauen ",$string);
 		$string = str_replace("magne ","baum ",$string);
+		$string = str_replace("at ","bei ",$string);
+		$string = str_replace("at ","beim ",$string);
 		$string = str_replace("wyr'a'e ","bekommen ",$string);
 		$string = str_replace("bonoka'am ","berg ",$string);
 		$string = str_replace("tag ","bild ",$string);
-		$string = str_replace("at ","bin/bis/bei/beim/ist ",$string);
-		$string = str_replace("da'e ","böse ",$string);
+		$string = str_replace("at ","bin ",$string);
+		$string = str_replace("at ","bis ",$string);
+		$string = str_replace("da'e ","Böse ",$string);
 		$string = str_replace("wyr ","brauchen ",$string);
 		$string = str_replace("bra ","bringen ",$string);
 		$string = str_replace("eh ","da ",$string);
-		$string = str_replace("eh'a ","daran/-rauf/-rin/-von/-... ",$string);
-		$string = str_replace("fiw'ry ","dunkel ",$string);
-		$string = str_replace("we'w ","ein/eine/einer ",$string);
+		$string = str_replace("eh'a ","daran ",$string);
+		$string = str_replace("eh'a ","darauf ",$string);
+		$string = str_replace("eh'a ","darin ",$string);
+		$string = str_replace("eh'a ","davon ",$string);
+		$string = str_replace("eh'a ","dabei ",$string);
+		$string = str_replace("eh'a ","damit ",$string);
+		$string = str_replace("Fiw'ry ","dunkel ",$string);
+		$string = str_replace("we'w ","ein ",$string);
+		$string = str_replace("we'w ","eine ",$string);
+		$string = str_replace("we'w ","einer ",$string);
 		$string = str_replace("mewre ","einfach ",$string);
 		$string = str_replace("and ","ende ",$string);
 		$string = str_replace("dad'a'ney ","erde ",$string);
-		$string = str_replace("wy'ru'ru'ne ","familie ",$string);
+		$string = str_replace("wy'ru'ru'ne ","Familie ",$string);
 		$string = str_replace("ne'ne ","fehlen ",$string);
 		$string = str_replace("ru'ne'ne ","fliegen ",$string);
-		$string = str_replace("da'am'ke ","frau ",$string);
-		$string = str_replace("i'ne'ru ","frei ",$string);
+		$string = str_replace("da'am'ke ","Frau ",$string);
+		$string = str_replace("i'ne'ru ","Frei ",$string);
 		$string = str_replace("da'wy'ne ","fragen ",$string);
 		$string = str_replace("ne'da'ne ","fressen ",$string);
-		$string = str_replace("na'ni ","freund ",$string);
+		$string = str_replace("na'ni ","Freund ",$string);
 		$string = str_replace("ha'wyr ","ganz ",$string);
 		$string = str_replace("de'de ","geben ",$string);
 		$string = str_replace("ahhhh ","gefahr ",$string);
@@ -290,18 +306,18 @@
 		$string = str_replace("wyr'wyr'ke ","gesicht ",$string);
 		$string = str_replace("nay'i ","gesund ",$string);
 		$string = str_replace("da'da'eh ","gewinnen ",$string);
-		$string = str_replace("da'eh'ru ","glck ",$string);
+		$string = str_replace("da'eh'ru ","glück ",$string);
 		$string = str_replace("etharem ","gott ",$string);
 		$string = str_replace("raha'ru'ru ","groß ",$string);
-		$string = str_replace("ha'ru ","gruá ",$string);
+		$string = str_replace("ha'ru ","gruß ",$string);
 		$string = str_replace("ta'ta'a ","gut ",$string);
 		$string = str_replace("hat'ru ","haben ",$string);
 		$string = str_replace("ke'ru'wyr ","halten ",$string);
-		$string = str_replace("dov'a ","hat ",$string);
-		$string = str_replace("kot ","haus ",$string);
-		$string = str_replace("ha'jie ","heiá ",$string);
+		$string = str_replace("Dov'a ","hat ",$string);
+		$string = str_replace("kot ","Haus ",$string);
+		$string = str_replace("ha'jie ","heiß ",$string);
 		$string = str_replace("ver'ki'in ","helfen ",$string);
-		$string = str_replace("damdam ","herz ",$string);
+		$string = str_replace("damdam ","Herz ",$string);
 		$string = str_replace("sh'e ","heute ",$string);
 		$string = str_replace("got'wyr ","himmel ",$string);
 		$string = str_replace("ver'wyr ","hunger ",$string);
@@ -310,7 +326,7 @@
 		$string = str_replace("smo'ol ","klein ",$string);
 		$string = str_replace("do'ke ","kopf ",$string);
 		$string = str_replace("do'ma'ke ","krank/kaputt ",$string);
-		$string = str_replace("so'me ","land ",$string);
+		$string = str_replace("so'me ","Land ",$string);
 		$string = str_replace("da'dal ","laufen ",$string);
 		$string = str_replace("ru'wyr'ki'in ","leben ",$string);
 		$string = str_replace("ne'ne'mah'ah ","lehrer ",$string);
@@ -319,14 +335,14 @@
 		$string = str_replace("ru'na'me ","liebe ",$string);
 		$string = str_replace("wu ","loch ",$string);
 		$string = str_replace("de'ene'ene ","luft ",$string);
-		$string = str_replace("kiki ","m„dchen ",$string);
-		$string = str_replace("da'am'ru ","mann ",$string);
-		$string = str_replace("na'na'ki'in ","maus ",$string);
-		$string = str_replace("ma'ru ","meer ",$string);
-		$string = str_replace("do'do'sa'ne ","mensch ",$string);
+		$string = str_replace("kiki ","mädchen ",$string);
+		$string = str_replace("da'am'ru ","Mann ",$string);
+		$string = str_replace("na'na'ki'in ","Maus ",$string);
+		$string = str_replace("ma'ru ","Meer ",$string);
+		$string = str_replace("do'do'sa'ne ","Mensch ",$string);
 		$string = str_replace("ma'ma ","mutter ",$string);
-		$string = str_replace("ku'da ","nacht ",$string);
-		$string = str_replace("na'ru'me ","name ",$string);
+		$string = str_replace("ku'da ","Nacht ",$string);
+		$string = str_replace("na'ru'me ","Name ",$string);
 		$string = str_replace("tak'ru ","natur ",$string);
 		$string = str_replace("ye'eh ","nein ",$string);
 		$string = str_replace("an'ye'ru ","nichts ",$string);
@@ -336,13 +352,13 @@
 		$string = str_replace("oh ","offen ",$string);
 		$string = str_replace("ma'ru'ru'ma ","reich ",$string);
 		$string = str_replace("an'an ","ruhig ",$string);
-		$string = str_replace("eh'wyr ","sache ",$string);
+		$string = str_replace("eh'wyr ","Sache ",$string);
 		$string = str_replace("oh'ru ","sagen ",$string);
 		$string = str_replace("ru'ki'ru'wyr'ru ","schlecht ",$string);
 		$string = str_replace("ah'ki'in ","schnee ",$string);
-		$string = str_replace("he'wyr'da'me ","schreiben/schrift ",$string);
+		$string = str_replace("he'wyr'da'me ","schreiben/Schrift ",$string);
 		$string = str_replace("kad'kad ","schlafen ",$string);
-		$string = str_replace("no'ob ","schler ",$string);
+		$string = str_replace("no'ob ","Schüler ",$string);
 		$string = str_replace("ney'ran ","schwester ",$string);
 		$string = str_replace("ru'un ","sehen ",$string);
 		$string = str_replace("tak ","selbst ",$string);
@@ -354,19 +370,19 @@
 		$string = str_replace("tur'uk ","stein ",$string);
 		$string = str_replace("a'man ","stelle ",$string);
 		$string = str_replace("ru'k'tar ","suchen ",$string);
-		$string = str_replace("da'nery ","tag ",$string);
+		$string = str_replace("da'nery ","Tag ",$string);
 		$string = str_replace("unum ","tier ",$string);
 		$string = str_replace("akta ","tot ",$string);
 		$string = str_replace("a'ye ","ber ",$string);
-		$string = str_replace("a'ye'ney ","berall ",$string);
+		$string = str_replace("a'ye'ney ","überall ",$string);
 		$string = str_replace("a ","und ",$string);
-		$string = str_replace("fa'wre ","vater ",$string);
+		$string = str_replace("fa'wre ","Vater ",$string);
 		$string = str_replace("no'am'ru'ki'in ","vergessen ",$string);
 		$string = str_replace("nay'u ","verstehen ",$string);
 		$string = str_replace("atama ","viel ",$string);
 		$string = str_replace("ke'ru ","vielleicht ",$string);
 		$string = str_replace("br'hru ","vogel ",$string);
-		$string = str_replace("tor'im ","wahr ",$string);
+		$string = str_replace("tor'im ","Wahr ",$string);
 		$string = str_replace("etha'ru ","wald ",$string);
 		$string = str_replace("ra'ye ","warten ",$string);
 		$string = str_replace("ether'ye ","wasser ",$string);
@@ -381,9 +397,9 @@
 		$string = str_replace("zu'wyr ","wenig ",$string);
 		$string = str_replace("ru'ke'etha ","wissen ",$string);
 		$string = str_replace("da'ki'in ","wirklich ",$string);
-		$string = str_replace("man ","zahl ",$string);
+		$string = str_replace("man ","Zahl ",$string);
 		$string = str_replace("taru'ki'in ","zeit ",$string);
-		$string = str_replace("nayum ","zurck ",$string);
+		$string = str_replace("nayum ","zurück ",$string);
 		$string = str_replace("ura'ki'in ","zusammen ",$string);
 		$string = str_replace("darudame ","zwischen ",$string);
 		$string = str_replace("ye ","ich ",$string);
@@ -395,6 +411,6 @@
 		$string = str_replace("ye'ye ","ihr ",$string);
 		$string = str_replace("ye'im ","sie ",$string);
 		$string = str_replace("tem'ki ","vergangenheit ",$string);
-		$string = str_replace("tem'ru ","zukunft ",$string);		
+		$string = str_replace("tem'ru ","zukunft ",$string);
 		return $string;
 	}
